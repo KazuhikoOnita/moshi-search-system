@@ -1,0 +1,15 @@
+# Google OAuth設定の例
+GOOGLE_CLIENT_ID=931926730050-j8dprs389gulhb1libi5ds14iplbsrtk.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=GOCSPX-xxxxxxxxxxxxxxxxxx
+JWT_SECRET=my-secret-key-medicmedia-2024
+GOOGLE_SHEETS_ID=1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ALLOWED_DOMAIN=medicmedia.com
+
+# 注意: GOOGLE_CLIENT_SECRETは以下の方法で取得
+# 1. 新しいOAuthクライアントIDを作成
+# 2. 作成直後のポップアップでシークレットをコピー
+# 3. または既存のクライアントで「シークレットをリセット」
+
+# GOOGLE_SHEETS_IDは以下で確認
+# https://drive.google.com/drive/folders/1KjZTyBWSZpjfFQkKAiAugrTOP44itFKi
+# フォルダ内のスプレッドシートを開いてURLから取得

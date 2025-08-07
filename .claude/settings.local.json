@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(find:*)",
+      "Bash(timeout 8 npm run dev)",
+      "Bash(pkill:*)",
+      "Bash(true)",
+      "Bash(rm:*)",
+      "Bash(lsof:*)",
+      "Bash(grep:*)",
+      "Bash(mv:*)",
+      "Bash(npm create:*)",
+      "Bash(cp:*)",
+      "Bash(curl:*)",
+      "Bash(kill:*)",
+      "Bash(sudo pkill:*)",
+      "Bash(npx serve:*)",
+      "Bash(python3:*)",
+      "Bash(touch:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": []
+  }
+}

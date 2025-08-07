@@ -1,0 +1,29 @@
+name = "moshi-search-api"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "EXAM_CACHE"
+preview_id = "exam-cache-preview"
+id = "exam-cache-production"
+
+[[kv_namespaces]]
+binding = "IMAGE_CACHE"
+preview_id = "image-cache-preview"
+id = "image-cache-production"
+
+[[kv_namespaces]]
+binding = "SESSION_STORE"
+preview_id = "session-store-preview"
+id = "session-store-production"
+
+[vars]
+ALLOWED_DOMAIN = "medicmedia.com"
+
+# Secrets (set with: wrangler secret put SECRET_NAME)
+# GOOGLE_CLIENT_ID
+# GOOGLE_CLIENT_SECRET
+# JWT_SECRET
+# GOOGLE_SHEETS_ID
+# SERVICE_ACCOUNT_EMAIL
+# SERVICE_ACCOUNT_PRIVATE_KEY

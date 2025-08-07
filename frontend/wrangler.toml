@@ -1,0 +1,18 @@
+name = "moshi-search"
+compatibility_date = "2024-01-01"
+
+# Pages configuration
+[env.production.pages]
+routes = [
+  { pattern = "*", zone_name = "moshi-search.pages.dev" }
+]
+
+# Build configuration
+[build]
+command = "npm run build"
+cwd = "."
+watch_dir = "src"
+
+# Environment variables for production
+[env.production.vars]
+API_BASE_URL = "https://moshi-search-api.your-workers-subdomain.workers.dev"
