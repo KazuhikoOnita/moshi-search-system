@@ -1,13 +1,13 @@
 # 模試検索システム - Cloudflare版
 
-Google Apps ScriptからCloudflare Workers/Pagesに移行したバージョンです。
+医師国家試験模試の問題検索システムです。Google SheetsのデータをCloudflare Workersで検索し、Google Driveの画像を表示します。
 
 ## 構成
 
 - **フロントエンド**: Cloudflare Pages + React + Vite + Tailwind CSS
 - **バックエンド**: Cloudflare Workers + Google Workspace API連携
 - **ストレージ**: Cloudflare KV (キャッシュ) + Google Sheets (データベース) + Google Drive (画像)
-- **認証**: Google OAuth2 (Workspace連携)
+- **認証**: Google OAuth2 (@medicmedia.comドメイン限定)
 
 ## 🚀 クイックスタート
 
@@ -39,7 +39,9 @@ cd frontend && npm run dev
 
 1. Cloudflareアカウント
 2. Node.js 18以上
-3. Google Workspace管理者権限 (OAuth設定用)
+3. Google Cloud Platform (GCP) プロジェクト
+4. Google Workspace管理者権限 (OAuth設定用)
+5. Wrangler CLI (`npm install -g wrangler`)
 
 ### 1. Google OAuth設定
 
@@ -95,14 +97,27 @@ npm run deploy
 #### Workers (API)
 
 ```bash
-# Required secrets
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-JWT_SECRET=your_random_jwt_secret
-GOOGLE_SHEETS_ID=your_spreadsheet_id
+# .env.example を .dev.vars にコピー
+cp .env.example .dev.vars
 
-# Public variables (wrangler.toml)
-ALLOWED_DOMAIN=yourcompany.com
+# .dev.vars を編集して以下の値を設定:
+# - GOOGLE_CLIENT_ID: GCPコンソールから取得
+# - GOOGLE_CLIENT_SECRET: GCPコンソールから取得  
+# - JWT_SECRET: ランダムな文字列 (openssl rand -base64 32)
+# - GOOGLE_SHEETS_ID: スプレッドシートURL内のID
+# - SERVICE_ACCOUNT_EMAIL: サービスアカウントのメール (オプション)
+# - SERVICE_ACCOUNT_PRIVATE_KEY: サービスアカウントの秘密鍵 (オプション)
+
+# 本番環境へのシークレット設定
+npx wrangler secret put GOOGLE_CLIENT_ID
+npx wrangler secret put GOOGLE_CLIENT_SECRET
+npx wrangler secret put JWT_SECRET
+npx wrangler secret put GOOGLE_SHEETS_ID
+npx wrangler secret put SERVICE_ACCOUNT_EMAIL
+npx wrangler secret put SERVICE_ACCOUNT_PRIVATE_KEY
+
+# wrangler.toml で公開変数を設定
+# ALLOWED_DOMAIN=medicmedia.com
 ```
 
 #### Pages (Frontend)
